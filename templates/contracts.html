@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Самые большие государственные контракты, подписанные в этом месяце</title>
+
+<link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+<script>
+$(document).ready(function() {
+    $("#list").accordion({collapsible: true, active: false});
+});
+</script>
+<h1>Самые большие государственные контракты, подписанные в этом месяце</h1>
+<p>В список включены компании, получившие в текущем месяце госконтракты на суммы от 5 млрд рублей. </p>
+
+<div id="list">
+
+    {% for row in data %}
+    <h3>
+
+     {{ row['suppliers'][0]['organizationName'] }}
+
+    </h3>
+    <div><p>
+        {{ row['products'][0]['name'] }}
+    </p>
+    <p><span class = 'label label-danger'>
+        {{ row['price'] / 1000000000 }} млрд. руб.
+    </span></p>
+    <p>
+        <a href="{{ url_for('contract_details', n = loop.index0 + 1) }}">Посмотреть подробности контракта.</a>
+    </p>
+    </div>
+    {# Some comment #}
+    {% endfor %}
+</div>
+
+</body>
+</html>

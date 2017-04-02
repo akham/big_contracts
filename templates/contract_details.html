@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Информация о контракте № {{ contract['regNum'] }}</title>
+</head>
+<body>
+<h1>Информация о контракте № {{ contract['regNum'] }}</h1>
+<p><a href="{{ contract_url }}">Посмотреть на сайте госзакупок</a></p>
+
+<p>Госзаказчик: {{ contract['customer']['fullName'] }} </p>
+<p>Получатель контракта: {{ contract['suppliers'][0]['organizationName'] }} (ИНН: {{ contract['suppliers'][0]['inn'] }}) </p>
+<p>Предмет договора: {{ contract['purchaseInfo']['name'] }}</p>
+<p>Сумма контракта: {{ contract['price'] / 1000000000 }} млрд. руб. </p>
+<p>Начало исполнения контракта: {{ contract['execution']['startDate'] }}</p>
+<p>Окончание исполнения контракта: {{ contract['execution']['endDate'] }}</p>
+<p>Другие контракты этого исполнителя:</p>
+
+</body>
+</html>
